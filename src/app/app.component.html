@@ -1,7 +1,31 @@
-<h1>{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="gap-4">
+    <div class="flex h-full items-center gap-2">
+      <div class="sm:hidden">
+        <button mat-icon-button aria-label="burguer icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <span class="h-1/2 flex-none rounded-3xl bg-white"
+        ><img src="assets/logo.png" alt="logo" class="h-full"
+      /></span>
+      <span class="text-base">{{ title }}</span>
+    </div>
+    <nav class="hidden gap-2 sm:flex">
+      <a
+        *ngFor="let navMenuItem of navMenuItems"
+        class="mat-button text-base hover:bg-activatedNavItem"
+        routerLink="{{ navMenuItem.url }}"
+        routerLinkActive="bg-activatedNavItem"
+        >{{ navMenuItem.text }}</a
+      >
+    </nav>
+    <mat-nav-list class="bg-white" style="border: 2px solid red">
+      <mat-list-item *ngFor="let navMenuItem of navMenuItems">
+        <a matLine routerLink="{{ navMenuItem.url }}">{{ navMenuItem.text }}</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
