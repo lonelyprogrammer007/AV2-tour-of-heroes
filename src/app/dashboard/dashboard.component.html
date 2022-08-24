@@ -1,7 +1,7 @@
-<h2>Top Heroes</h2>
-<div>
-  <a *ngFor="let hero of heroes" routerLink="/detail/{{ hero.id }}">
-    {{ hero.name }}
-  </a>
+<div class="text-center">
+  <h2>Top Heroes</h2>
+  <div class="util-grid-columns-auto-fill-200 grid gap-2">
+    <app-hero-badge *ngFor="let hero of heroes" [hero]="hero"></app-hero-badge>
+  </div>
+  <app-hero-search></app-hero-search>
 </div>
-<app-hero-search></app-hero-search>

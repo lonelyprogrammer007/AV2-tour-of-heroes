@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { NgxJdenticonModule } from 'ngx-jdenticon';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -13,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { HeroBadgeComponent } from './hero-badge/hero-badge.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
+    HeroBadgeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     BrowserAnimationsModule,
     SharedModule,
+    NgxJdenticonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

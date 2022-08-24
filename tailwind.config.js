@@ -4,9 +4,11 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: { colors },
+    extend: {
+      colors,
+    },
     colors: {
-      activatedNavItem: "rgba(0, 0, 0, 0.2)",
+      'custom-color-1': "rgba(0, 0, 0, 0.2)",
     },
   },
   plugins: [],

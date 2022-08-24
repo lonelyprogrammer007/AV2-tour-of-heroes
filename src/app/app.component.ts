@@ -11,4 +11,5 @@ export class AppComponent {
     { url: '/dashboard', text: 'Dashboard' },
     { url: '/heroes', text: 'Heroes' },
   ];
+  isMenuActive = false;
 }

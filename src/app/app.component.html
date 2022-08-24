@@ -1,8 +1,12 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row class="gap-4">
+<mat-toolbar color="primary" class="relative z-30">
+  <mat-toolbar-row class="relative gap-4">
     <div class="flex h-full items-center gap-2">
       <div class="sm:hidden">
-        <button mat-icon-button aria-label="burguer icon-button with menu icon">
+        <button
+          (click)="isMenuActive = !isMenuActive"
+          mat-icon-button
+          aria-label="burguer icon-button with menu icon"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       </div>
@@ -14,18 +18,34 @@
     <nav class="hidden gap-2 sm:flex">
       <a
         *ngFor="let navMenuItem of navMenuItems"
-        class="mat-button text-base hover:bg-activatedNavItem"
+        class="mat-button text-base hover:bg-custom-color-1"
         routerLink="{{ navMenuItem.url }}"
-        routerLinkActive="bg-activatedNavItem"
+        routerLinkActive="bg-custom-color-1"
         >{{ navMenuItem.text }}</a
       >
     </nav>
-    <mat-nav-list class="bg-white" style="border: 2px solid red">
-      <mat-list-item *ngFor="let navMenuItem of navMenuItems">
-        <a matLine routerLink="{{ navMenuItem.url }}">{{ navMenuItem.text }}</a>
-      </mat-list-item>
-    </mat-nav-list>
   </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="absolute z-20 sm:hidden">
+  <mat-nav-list
+    [ngClass]="isMenuActive ? 'translate-x-0' : 'translate-x-[-100%]'"
+    class="absolute top-full left-0 z-20 bg-white drop-shadow-2xl transition duration-150 ease-out"
+  >
+    <mat-list-item *ngFor="let navMenuItem of navMenuItems">
+      <a
+        matLine
+        (click)="isMenuActive = false"
+        routerLink="{{ navMenuItem.url }}"
+        >{{ navMenuItem.text }}</a
+      >
+    </mat-list-item>
+  </mat-nav-list>
+  <div
+    [ngClass]="isMenuActive ? 'block' : 'hidden'"
+    class="fixed inset-0 bg-custom-color-1"
+  ></div>
+</div>
+<div class="container relative z-10 mx-auto p-2 sm:p-4">
+  <router-outlet></router-outlet>
+</div>
 <app-messages></app-messages>
