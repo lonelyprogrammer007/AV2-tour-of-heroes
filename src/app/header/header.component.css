@@ -1,0 +1,39 @@
+.header {
+  @apply relative z-30;
+}
+.header__row {
+  @apply relative gap-4;
+}
+.header__brand-container {
+  @apply flex h-full items-center gap-2;
+}
+.header__burguer-button {
+  @apply sm:hidden;
+}
+.header__logo-container {
+  @apply h-1/2 flex-none rounded-3xl bg-white;
+}
+.header__logo {
+  @apply h-full;
+}
+.header__title {
+  @apply text-base;
+}
+.header__navbar {
+  @apply hidden gap-2 sm:flex;
+}
+.header__nav-item {
+  @apply py-2 text-base hover:bg-custom-color-1;
+}
+.header__rw-navbar {
+  @apply absolute z-20 sm:hidden;
+}
+.header__rw-nav-list--hidden {
+  @apply translate-x-0;
+}
+.header__rw-nav-list--active {
+  @apply translate-x-[-100%];
+}
+.header__rw-nav-list {
+  @apply absolute top-full left-0 z-20 bg-white drop-shadow-2xl transition duration-150 ease-out;
+}

@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row class="header__row">
+    <div class="header__brand-container">
+      <div class="header__burguer-button">
+        <button
+          (click)="isMenuActive = !isMenuActive"
+          mat-icon-button
+          aria-label="burguer icon-button with menu icon"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <span class="header__logo-container"
+        ><img src="assets/logo.png" alt="logo" class="header__logo"
+      /></span>
+      <span class="header__title">{{ title }}</span>
+    </div>
+    <nav class="header__navbar">
+      <a
+        mat-button
+        *ngFor="let navMenuItem of navMenuItems"
+        class="header__nav-item"
+        routerLink="{{ navMenuItem.url }}"
+        routerLinkActive="bg-custom-color-1"
+        >{{ navMenuItem.text }}</a
+      >
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="header__rw-navbar">
+  <mat-nav-list
+    [ngClass]="
+      isMenuActive
+        ? 'header__rw-nav-list--hidden '
+        : 'header__rw-nav-list--active '
+    "
+    class="header__rw-nav-list"
+  >
+    <mat-list-item *ngFor="let navMenuItem of navMenuItems">
+      <a
+        matLine
+        (click)="isMenuActive = false"
+        routerLink="{{ navMenuItem.url }}"
+        >{{ navMenuItem.text }}</a
+      >
+    </mat-list-item>
+  </mat-nav-list>
+  <div
+    [ngClass]="
+      isMenuActive ? 'overlay--active block' : 'overlay--hidden hidden'
+    "
+    class="overlay fixed inset-0 bg-custom-color-1"
+  ></div>
+</div>

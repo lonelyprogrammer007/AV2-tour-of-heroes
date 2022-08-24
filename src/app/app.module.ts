@@ -15,6 +15,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HeroBadgeComponent } from './hero-badge/hero-badge.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeroBadgeComponent } from './hero-badge/hero-badge.component';
     DashboardComponent,
     HeroSearchComponent,
     HeroBadgeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
