@@ -1,0 +1,6 @@
+.hero-badge {
+  @apply border-4 border-custom-purple hover:bg-custom-color-1;
+}
+.hero-badge__link {
+  @apply flex items-center justify-center gap-2;
+}

@@ -1,0 +1,9 @@
+.hero-detail__card-container {
+  @apply border-4 border-custom-purple;
+}
+.hero-detail__inner-container {
+  @apply flex flex-col items-center;
+}
+.hero-detail__image-container {
+  @apply flex justify-center;
+}

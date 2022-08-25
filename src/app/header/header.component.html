@@ -47,9 +47,7 @@
   </mat-nav-list>
   <div
     (click)="isMenuActive = false"
-    [ngClass]="
-      isMenuActive ? 'overlay--active block' : 'overlay--hidden hidden'
-    "
+    [ngClass]="isMenuActive ? 'overlay--active ' : 'overlay--hidden '"
     class="overlay fixed inset-0 bg-custom-color-1"
   ></div>
 </div>

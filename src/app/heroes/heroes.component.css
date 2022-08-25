@@ -1,0 +1,21 @@
+.heroes__new-hero-container {
+  @apply flex items-center gap-2;
+}
+.heroes__list {
+  @apply flex flex-col gap-2;
+}
+.hero-card {
+  @apply overflow-hidden;
+}
+.hero-card__link {
+  @apply flex flex-1 items-center;
+}
+.hero-card__id-text {
+  @apply inline-block bg-custom-purple p-2 text-white;
+}
+.hero-card__name-text {
+  @apply grid h-full w-full flex-1 place-items-center;
+}
+.hero-card__close-action {
+  @apply grid place-content-center;
+}

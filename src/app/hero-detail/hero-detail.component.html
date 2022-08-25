@@ -1,10 +1,10 @@
-<div *ngIf="hero">
-  <mat-card class="border-4 border-custom-purple">
-    <div class="flex flex-col items-center">
+<div *ngIf="hero" class="hero-detail">
+  <mat-card class="hero-detail__card-container">
+    <div class="hero-detail__inner-container">
       <mat-card-title>{{ hero.name | uppercase }}</mat-card-title>
       <mat-card-subtitle><span>id: </span>{{ hero.id }}</mat-card-subtitle>
       <div mat-card-image>
-        <div class="flex justify-center">
+        <div class="hero-detail__image-container">
           <svg
             width="100"
             height="100"

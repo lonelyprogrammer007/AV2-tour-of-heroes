@@ -1,0 +1,12 @@
+.log-messages {
+  @apply rounded bg-custom-purple p-2 text-white;
+}
+.log-messages__container {
+  @apply flex flex-col gap-2;
+}
+.log-messages__message-container {
+  @apply flex h-auto flex-col gap-2;
+}
+.log-messages__message {
+  @apply rounded-lg bg-white;
+}

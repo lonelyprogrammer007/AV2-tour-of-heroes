@@ -1,41 +1,39 @@
-<h2>My Heroes</h2>
-<div class="flex items-center gap-2">
-  <mat-form-field appearance="fill">
-    <mat-label>Hero name:</mat-label>
-    <input matInput #heroName />
-  </mat-form-field>
-  <button
-    type="button"
-    (click)="add(heroName.value); heroName.value = ''"
-    mat-raised-button
-    color="primary"
-  >
-    Add hero
-  </button>
-</div>
-<div class="flex flex-col gap-2">
-  <mat-card
-    class="overflow-hidden"
-    style="padding: 0 0.5rem 0 0; display: flex"
-    *ngFor="let hero of heroes"
-    ><a class="flex flex-1 items-center" routerLink="/detail/{{ hero.id }}">
-      <span class="inline-block bg-custom-purple p-2 text-white">{{
-        hero.id
-      }}</span>
-      <span class="w-full-h-full grid flex-1 place-items-center">{{
-        hero.name
-      }}</span>
-    </a>
+<section class="heroes">
+  <h2>My Heroes</h2>
+  <div class="heroes__new-hero-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Hero name:</mat-label>
+      <input matInput #heroName />
+    </mat-form-field>
     <button
-      class="grid place-content-center"
       type="button"
-      title="delete hero"
-      (click)="delete(hero)"
+      (click)="add(heroName.value); heroName.value = ''"
+      mat-raised-button
+      color="primary"
     >
-      <mat-icon
-        aria-hidden="false"
-        aria-label="delete icon"
-        fontIcon="close"
-      ></mat-icon></button
-  ></mat-card>
-</div>
+      Add hero
+    </button>
+  </div>
+  <div class="heroes__list">
+    <mat-card
+      class="hero-card"
+      style="padding: 0 0.5rem 0 0; display: flex"
+      *ngFor="let hero of heroes"
+      ><a class="hero-card__link" routerLink="/detail/{{ hero.id }}">
+        <span class="hero-card__id-text">{{ hero.id }}</span>
+        <span class="hero-card__name-text">{{ hero.name }}</span>
+      </a>
+      <button
+        class="hero-card__close-action"
+        type="button"
+        title="delete hero"
+        (click)="delete(hero)"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="delete icon"
+          fontIcon="close"
+        ></mat-icon></button
+    ></mat-card>
+  </div>
+</section>

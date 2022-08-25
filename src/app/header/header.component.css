@@ -37,3 +37,9 @@
 .header__rw-nav-list {
   @apply absolute top-full left-0 z-20 bg-white drop-shadow-2xl transition duration-150 ease-out;
 }
+.overlay--active {
+  @apply block;
+}
+.overlay--hidden {
+  @apply hidden;
+}

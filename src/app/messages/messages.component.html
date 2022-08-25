@@ -1,9 +1,9 @@
 <mat-list
   *ngIf="messageService.messages.length"
   role="list"
-  class="rounded bg-custom-purple p-2 text-white"
+  class="log-messages"
 >
-  <div class="flex flex-col gap-2">
+  <div class="log-messages__container">
     <h2>Messages</h2>
     <button
       mat-raised-button
@@ -13,10 +13,10 @@
     >
       Clear messages
     </button>
-    <div class="flex h-auto flex-col gap-2">
+    <div class="log-messages__message-container">
       <mat-list-item
         role="listitem"
-        class="rounded-lg bg-white"
+        class="log-messages__message"
         style="height: auto; padding-top: 1rem; padding-bottom: 1rem"
         *ngFor="let message of messageService.messages"
         >{{ message }}</mat-list-item
