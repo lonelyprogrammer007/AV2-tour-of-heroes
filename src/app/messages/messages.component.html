@@ -1,12 +1,26 @@
-<div *ngIf="messageService.messages.length">
-  <h2>Messages</h2>
-  <button
-    mat-raised-button
-    color="warn"
-    type="button"
-    (click)="messageService.clear()"
-  >
-    Clear messages
-  </button>
-  <div *ngFor="let message of messageService.messages">{{ message }}</div>
-</div>
+<mat-list
+  *ngIf="messageService.messages.length"
+  role="list"
+  class="rounded bg-custom-purple p-2 text-white"
+>
+  <div class="flex flex-col gap-2">
+    <h2>Messages</h2>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="messageService.clear()"
+    >
+      Clear messages
+    </button>
+    <div class="flex h-auto flex-col gap-2">
+      <mat-list-item
+        role="listitem"
+        class="rounded-lg bg-white"
+        style="height: auto; padding-top: 1rem; padding-bottom: 1rem"
+        *ngFor="let message of messageService.messages"
+        >{{ message }}</mat-list-item
+      >
+    </div>
+  </div>
+</mat-list>

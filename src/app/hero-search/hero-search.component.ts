@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -20,10 +20,10 @@ import { HeroService } from '../hero.service';
 export class HeroSearchComponent implements OnInit {
   heroes$?: Observable<Hero[]>;
   private searchTerms: Subject<string> = new Subject<string>();
+  @ViewChild('serachListContainer') serachListContainer!: ElementRef;
 
   constructor(private heroService: HeroService) {}
 
-  // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
@@ -38,5 +38,14 @@ export class HeroSearchComponent implements OnInit {
           this.heroService.searchHeroes(term)
       )
     );
+  }
+
+  ngAfterViewChecked(): void {
+    const x = this.serachListContainer.nativeElement as HTMLElement;
+    if (x.childNodes[0].childNodes.length > 1) {
+      x.classList.remove('hidden');
+    } else {
+      x.classList.add('hidden');
+    }
   }
 }

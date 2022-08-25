@@ -1,20 +1,41 @@
 <h2>My Heroes</h2>
-
-<div>
-  <label for="new-hero">Hero name: </label>
-  <input id="new-hero" #heroName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" (click)="add(heroName.value); heroName.value = ''">
+<div class="flex items-center gap-2">
+  <mat-form-field appearance="fill">
+    <mat-label>Hero name:</mat-label>
+    <input matInput #heroName />
+  </mat-form-field>
+  <button
+    type="button"
+    (click)="add(heroName.value); heroName.value = ''"
+    mat-raised-button
+    color="primary"
+  >
     Add hero
   </button>
 </div>
-
-<ul>
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{ hero.id }}">
-      <span>{{ hero.id }}</span> {{ hero.name }}
+<div class="flex flex-col gap-2">
+  <mat-card
+    class="overflow-hidden"
+    style="padding: 0 0.5rem 0 0; display: flex"
+    *ngFor="let hero of heroes"
+    ><a class="flex flex-1 items-center" routerLink="/detail/{{ hero.id }}">
+      <span class="inline-block bg-custom-purple p-2 text-white">{{
+        hero.id
+      }}</span>
+      <span class="w-full-h-full grid flex-1 place-items-center">{{
+        hero.name
+      }}</span>
     </a>
-    <button type="button" title="delete hero" (click)="delete(hero)">x</button>
-  </li>
-</ul>
+    <button
+      class="grid place-content-center"
+      type="button"
+      title="delete hero"
+      (click)="delete(hero)"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="delete icon"
+        fontIcon="close"
+      ></mat-icon></button
+  ></mat-card>
+</div>

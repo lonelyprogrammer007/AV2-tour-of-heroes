@@ -8,7 +8,8 @@ module.exports = {
       colors,
     },
     colors: {
-      'custom-color-1': "rgba(0, 0, 0, 0.2)",
+      "custom-color-1": "rgba(0, 0, 0, 0.2)",
+      "custom-purple": "#673ab7",
     },
   },
   plugins: [],

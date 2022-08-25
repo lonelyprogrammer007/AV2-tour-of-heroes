@@ -1,7 +1,7 @@
 <div class="text-center">
   <h2>Top Heroes</h2>
+  <app-hero-search></app-hero-search>
   <div class="util-grid-columns-auto-fill-200 grid gap-2">
     <app-hero-badge *ngFor="let hero of heroes" [hero]="hero"></app-hero-badge>
   </div>
-  <app-hero-search></app-hero-search>
 </div>

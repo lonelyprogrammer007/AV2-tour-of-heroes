@@ -1,12 +1,24 @@
-<div id="search-component">
-  <label for="search-box">Hero Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul>
-    <li *ngFor="let hero of heroes$ | async">
-      <a routerLink="/detail/{{ hero.id }}">
-        {{ hero.name }}
-      </a>
-    </li>
-  </ul>
+<div id="search-component" class="relative mx-auto w-min">
+  <mat-form-field appearance="fill">
+    <mat-label>Hero Search</mat-label>
+    <input #searchBox matInput (input)="search(searchBox.value)" />
+  </mat-form-field>
+  <div #serachListContainer>
+    <mat-list
+      role="list"
+      class="absolute top-full z-10 w-full border border-custom-color-1 bg-white drop-shadow-2xl"
+    >
+      <mat-list-item
+        class="hover:bg-custom-color-1"
+        role="listitem"
+        *ngFor="let hero of heroes$ | async"
+        ><a
+          class="grid h-full w-full place-content-center"
+          routerLink="/detail/{{ hero.id }}"
+        >
+          {{ hero.name }}
+        </a></mat-list-item
+      >
+    </mat-list>
+  </div>
 </div>
