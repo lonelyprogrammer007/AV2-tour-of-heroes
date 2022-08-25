@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": "dist/av2-angular-tour-of-heroes",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

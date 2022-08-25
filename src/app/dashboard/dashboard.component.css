@@ -2,5 +2,5 @@
   @apply text-center;
 }
 .dashboard__badge-container {
-  @apply util-grid-columns-auto-fill-200 grid gap-2;
+  @apply grid gap-2;
 }
