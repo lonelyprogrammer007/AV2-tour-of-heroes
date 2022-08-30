@@ -3,15 +3,16 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Hero } from '../model/hero';
-import { HeroService } from '../services/hero.service';
 
 import * as HeroesActions from '../state/actions/heroes.actions';
-import { AppState } from '../state/model/AppState';
+import { AppState } from '../state/model/app-state';
 import {
-  isLoadingSelector,
   heroesSelector,
-  errorSelector,
-} from '../state/selectors';
+  isAddHeroLoadingSelector,
+  isHeroesLoadingSelector,
+  errorAddHeroSelector,
+  errorHeroesLoadingSelector,
+} from '../state/selectors/heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -19,32 +20,31 @@ import {
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  isLoading$: Observable<boolean>;
-  error$: Observable<string | undefined | null>;
   heroes$: Observable<Hero[]>;
+  isHeroesLoading$: Observable<boolean>;
+  errorHeroesLoading$: Observable<string | undefined | null>;
+  isAddHeroLoading$: Observable<boolean>;
+  errorAddHero$: Observable<string | undefined | null>;
 
-  constructor(
-    private heroService: HeroService,
-    private store: Store<AppState>
-  ) {
-    this.isLoading$ = this.store.select(isLoadingSelector);
-    this.error$ = this.store.select(errorSelector);
+  constructor(private store: Store<AppState>) {
     this.heroes$ = this.store.select(heroesSelector);
+    this.isHeroesLoading$ = this.store.select(isHeroesLoadingSelector);
+    this.errorHeroesLoading$ = this.store.select(errorHeroesLoadingSelector);
+    this.isAddHeroLoading$ = this.store.select(isAddHeroLoadingSelector);
+    this.errorAddHero$ = this.store.select(errorAddHeroSelector);
   }
 
   ngOnInit(): void {
     this.store.dispatch(HeroesActions.getHeroes());
   }
 
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) {
-  //     return;
-  //   }
-  //   this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-  //     this.heroes.push(hero);
-  //   });
-  // }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.store.dispatch(HeroesActions.addHero({ hero: { name } as Hero }));
+  }
 
   // delete(hero: Hero): void {
   //   this.heroService.deleteHero(hero.id).subscribe((_) => {

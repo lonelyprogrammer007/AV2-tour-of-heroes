@@ -1,29 +1,50 @@
 <section class="heroes">
   <h2>My Heroes</h2>
-  <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
-  <h3 class="text-red-600" *ngIf="error$ | async as error">{{ error }}</h3>
+  <mat-spinner
+    *ngIf="isHeroesLoading$ | async; else heroListContainer"
+  ></mat-spinner>
+  <h3 class="text-red-600" *ngIf="errorHeroesLoading$ | async as error">
+    {{ error }}
+  </h3>
   <div class="heroes__new-hero-container">
     <mat-form-field appearance="fill">
       <mat-label>Hero name:</mat-label>
       <input matInput #heroName />
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary">Add hero</button>
+    <button
+      (click)="add(heroName.value); heroName.value = ''"
+      type="button"
+      mat-raised-button
+      color="primary"
+    >
+      Add hero
+    </button>
+    <mat-spinner *ngIf="isAddHeroLoading$ | async"></mat-spinner>
+    <h3 class="text-red-600" *ngIf="errorAddHero$ | async as error">
+      {{ error }}
+    </h3>
   </div>
-  <div class="heroes__list">
-    <mat-card
-      class="hero-card"
-      style="padding: 0 0.5rem 0 0; display: flex"
-      *ngFor="let hero of heroes$ | async"
-      ><a class="hero-card__link" routerLink="/detail/{{ hero.id }}">
-        <span class="hero-card__id-text">{{ hero.id }}</span>
-        <span class="hero-card__name-text">{{ hero.name }}</span>
-      </a>
-      <button class="hero-card__close-action" type="button" title="delete hero">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="delete icon"
-          fontIcon="close"
-        ></mat-icon></button
-    ></mat-card>
-  </div>
+  <ng-template #heroListContainer let-user>
+    <div class="heroes__list">
+      <mat-card
+        class="hero-card"
+        style="padding: 0 0.5rem 0 0; display: flex"
+        *ngFor="let hero of heroes$ | async"
+        ><a class="hero-card__link" routerLink="/detail/{{ hero.id }}">
+          <span class="hero-card__id-text">{{ hero.id }}</span>
+          <span class="hero-card__name-text">{{ hero.name }}</span>
+        </a>
+        <button
+          class="hero-card__close-action"
+          type="button"
+          title="delete hero"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="delete icon"
+            fontIcon="close"
+          ></mat-icon></button
+      ></mat-card>
+    </div>
+  </ng-template>
 </section>

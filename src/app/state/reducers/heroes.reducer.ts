@@ -1,25 +1,44 @@
 import { createReducer, on } from '@ngrx/store';
 
 import * as HeroesActions from '../actions/heroes.actions';
-import { HeroesState } from '../model/heroesState';
+import { AppState } from '../model/app-state';
 
-export const initialState: HeroesState = {
-  error: undefined,
+export const initialState: AppState = {
+  errorAddHero: undefined,
+  errorHeroesLoading: undefined,
+  isHeroesLoading: false,
+  isAddHeroLoading: false,
   heroes: [],
-  isLoading: false,
 };
 
 export const heroesReducer = createReducer(
   initialState,
-  on(HeroesActions.getHeroes, (state) => ({ ...state, isLoading: true })),
+  on(HeroesActions.getHeroes, (state) => ({
+    ...state,
+    isHeroesLoading: true,
+  })),
   on(HeroesActions.getHeroesSuccess, (state, { heroes }) => ({
     ...state,
-    isLoading: false,
+    isHeroesLoading: false,
     heroes,
   })),
   on(HeroesActions.getHeroesFailure, (state, { error }) => ({
     ...state,
-    isLoading: false,
-    error,
+    isHeroesLoading: false,
+    errorHeroesLoading: error,
+  })),
+  on(HeroesActions.addHero, (state) => ({
+    ...state,
+    isAddHeroLoading: true,
+  })),
+  on(HeroesActions.addHeroSuccess, (state, { hero }) => ({
+    ...state,
+    isAddHeroLoading: false,
+    heroes: [...state.heroes, hero],
+  })),
+  on(HeroesActions.addHeroFailure, (state, { error }) => ({
+    ...state,
+    isAddHeroLoading: false,
+    errorAddHero: error,
   }))
 );

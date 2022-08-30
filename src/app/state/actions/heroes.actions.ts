@@ -12,3 +12,15 @@ export const getHeroesFailure = createAction(
   '[Heroes] Get Heroes Failure',
   props<{ error: string }>()
 );
+
+export const addHero = createAction('[Hero] Add Hero', props<{ hero: Hero }>());
+
+export const addHeroSuccess = createAction(
+  '[Hero] Add Hero Success',
+  props<{ hero: Hero }>()
+);
+
+export const addHeroFailure = createAction(
+  '[Hero] Add Hero Failure',
+  props<{ error: string }>()
+);
