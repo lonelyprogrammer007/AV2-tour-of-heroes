@@ -1,35 +1,24 @@
 <section class="heroes">
   <h2>My Heroes</h2>
   <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  <h3 class="text-red-600" *ngIf="error$ | async as error">{{ error }}</h3>
   <div class="heroes__new-hero-container">
     <mat-form-field appearance="fill">
       <mat-label>Hero name:</mat-label>
       <input matInput #heroName />
     </mat-form-field>
-    <button
-      type="button"
-      (click)="add(heroName.value); heroName.value = ''"
-      mat-raised-button
-      color="primary"
-    >
-      Add hero
-    </button>
+    <button type="button" mat-raised-button color="primary">Add hero</button>
   </div>
   <div class="heroes__list">
     <mat-card
       class="hero-card"
       style="padding: 0 0.5rem 0 0; display: flex"
-      *ngFor="let hero of heroes"
+      *ngFor="let hero of heroes$ | async"
       ><a class="hero-card__link" routerLink="/detail/{{ hero.id }}">
         <span class="hero-card__id-text">{{ hero.id }}</span>
         <span class="hero-card__name-text">{{ hero.name }}</span>
       </a>
-      <button
-        class="hero-card__close-action"
-        type="button"
-        title="delete hero"
-        (click)="delete(hero)"
-      >
+      <button class="hero-card__close-action" type="button" title="delete hero">
         <mat-icon
           aria-hidden="false"
           aria-label="delete icon"

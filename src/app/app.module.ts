@@ -22,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { heroesReducer } from './state/reducers/heroes.reducer';
 import { AppState } from './state/model/AppState';
+import { HeroesEffects } from './state/effects/heroes.effects';
 
 const appState: ActionReducerMap<AppState> = {
   heroes: heroesReducer,
@@ -51,7 +52,7 @@ const appState: ActionReducerMap<AppState> = {
     SharedModule,
     NgxJdenticonModule,
     StoreModule.forRoot(appState),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([HeroesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

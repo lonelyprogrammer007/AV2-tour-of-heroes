@@ -11,5 +11,15 @@ export const initialState: HeroesState = {
 
 export const heroesReducer = createReducer(
   initialState,
-  on(HeroesActions.getHeroes, (state) => ({ ...state, isLoading: true }))
+  on(HeroesActions.getHeroes, (state) => ({ ...state, isLoading: true })),
+  on(HeroesActions.getHeroesSuccess, (state, { heroes }) => ({
+    ...state,
+    isLoading: false,
+    heroes,
+  })),
+  on(HeroesActions.getHeroesFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  }))
 );

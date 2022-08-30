@@ -7,7 +7,11 @@ import { HeroService } from '../services/hero.service';
 
 import * as HeroesActions from '../state/actions/heroes.actions';
 import { AppState } from '../state/model/AppState';
-import { isLoadingSelector } from '../state/selectors';
+import {
+  isLoadingSelector,
+  heroesSelector,
+  errorSelector,
+} from '../state/selectors';
 
 @Component({
   selector: 'app-heroes',
@@ -15,38 +19,36 @@ import { isLoadingSelector } from '../state/selectors';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[] = [];
   isLoading$: Observable<boolean>;
+  error$: Observable<string | undefined | null>;
+  heroes$: Observable<Hero[]>;
 
   constructor(
     private heroService: HeroService,
     private store: Store<AppState>
   ) {
     this.isLoading$ = this.store.select(isLoadingSelector);
+    this.error$ = this.store.select(errorSelector);
+    this.heroes$ = this.store.select(heroesSelector);
   }
 
   ngOnInit(): void {
-    this.getHeroes();
     this.store.dispatch(HeroesActions.getHeroes());
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
-  }
+  // add(name: string): void {
+  //   name = name.trim();
+  //   if (!name) {
+  //     return;
+  //   }
+  //   this.heroService.addHero({ name } as Hero).subscribe((hero) => {
+  //     this.heroes.push(hero);
+  //   });
+  // }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes.push(hero);
-    });
-  }
-
-  delete(hero: Hero): void {
-    this.heroService.deleteHero(hero.id).subscribe((_) => {
-      this.heroes = this.heroes.filter((h) => h !== hero);
-    });
-  }
+  // delete(hero: Hero): void {
+  //   this.heroService.deleteHero(hero.id).subscribe((_) => {
+  //     this.heroes = this.heroes.filter((h) => h !== hero);
+  //   });
+  // }
 }
