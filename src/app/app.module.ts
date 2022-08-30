@@ -16,8 +16,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HeroBadgeComponent } from './hero-badge/hero-badge.component';
 import { HeaderComponent } from './header/header.component';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { heroesReducer } from './state/reducers/heroes.reducer';
+import { AppState } from './state/model/AppState';
+
+const appState: ActionReducerMap<AppState> = {
+  heroes: heroesReducer,
+};
 
 @NgModule({
   declarations: [
@@ -42,8 +50,12 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     SharedModule,
     NgxJdenticonModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(appState),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

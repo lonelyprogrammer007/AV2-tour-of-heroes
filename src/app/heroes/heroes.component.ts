@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Hero } from '../model/hero';
 import { HeroService } from '../services/hero.service';
+
+import * as HeroesActions from '../state/actions/heroes.actions';
+import { AppState } from '../state/model/AppState';
+import { isLoadingSelector } from '../state/selectors';
 
 @Component({
   selector: 'app-heroes',
@@ -10,11 +16,18 @@ import { HeroService } from '../services/hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
+  isLoading$: Observable<boolean>;
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private store: Store<AppState>
+  ) {
+    this.isLoading$ = this.store.select(isLoadingSelector);
+  }
 
   ngOnInit(): void {
     this.getHeroes();
+    this.store.dispatch(HeroesActions.getHeroes());
   }
 
   getHeroes(): void {

@@ -1,5 +1,6 @@
 <section class="heroes">
   <h2>My Heroes</h2>
+  <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
   <div class="heroes__new-hero-container">
     <mat-form-field appearance="fill">
       <mat-label>Hero name:</mat-label>
