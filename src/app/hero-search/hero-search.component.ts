@@ -9,8 +9,8 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../model/hero';
+import { HeroService } from '../services/hero.service';
 
 @Component({
   selector: 'app-hero-search',
