@@ -8,9 +8,9 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
+import { Hero } from 'src/app/model/hero';
+import { HeroService } from 'src/app/services/hero.service';
 
-import { Hero } from '../model/hero';
-import { HeroService } from '../services/hero.service';
 
 @Component({
   selector: 'app-hero-search',

@@ -6,22 +6,22 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { NgxJdenticonModule } from 'ngx-jdenticon';
 
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { HeroBadgeComponent } from './hero-badge/hero-badge.component';
-import { HeaderComponent } from './header/header.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HeroesEffects } from './state/effects/heroes.effects';
 import { heroesReducer } from './state/reducers/heroes.reducer';
+import { HeroesComponent } from './components/heroes/heroes.component';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { HeroBadgeComponent } from './components/hero-badge/hero-badge.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [

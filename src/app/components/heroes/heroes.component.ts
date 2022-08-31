@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Hero } from 'src/app/model/hero';
+import { AppState } from 'src/app/state/model/app-state';
+import { errorAddHeroSelector, errorHeroesLoadingSelector, heroesSelector, isAddHeroLoadingSelector, isHeroesLoadingSelector } from 'src/app/state/selectors/heroes';
+import * as HeroesActions from "../../state/actions/heroes.actions"
 
-import { Hero } from '../model/hero';
 
-import * as HeroesActions from '../state/actions/heroes.actions';
-import { AppState } from '../state/model/app-state';
-import {
-  heroesSelector,
-  isAddHeroLoadingSelector,
-  isHeroesLoadingSelector,
-  errorAddHeroSelector,
-  errorHeroesLoadingSelector,
-} from '../state/selectors/heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -35,6 +29,7 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.store.dispatch(HeroesActions.getHeroes());
   }
 

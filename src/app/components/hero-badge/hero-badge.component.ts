@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from '../model/hero';
+import { Hero } from 'src/app/model/hero';
 
 @Component({
   selector: 'app-hero-badge',
