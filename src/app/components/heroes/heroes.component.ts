@@ -3,10 +3,15 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Hero } from 'src/app/model/hero';
 import { AppState } from 'src/app/state/model/app-state';
-import { errorAddHeroSelector, errorHeroesLoadingSelector, heroesSelector, isAddHeroLoadingSelector, isHeroesLoadingSelector } from 'src/app/state/selectors/heroes';
-import * as HeroesActions from "../../state/actions/heroes.actions"
-
-
+import {
+  errorAddHeroSelector,
+  errorDeleteHeroSelector,
+  errorHeroesLoadingSelector,
+  heroesSelector,
+  isAddHeroLoadingSelector,
+  isHeroesLoadingSelector,
+} from 'src/app/state/selectors/heroes';
+import * as HeroesActions from '../../state/actions/heroes.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -19,6 +24,7 @@ export class HeroesComponent implements OnInit {
   errorHeroesLoading$: Observable<string | undefined | null>;
   isAddHeroLoading$: Observable<boolean>;
   errorAddHero$: Observable<string | undefined | null>;
+  errorDeleteHero$: Observable<string | undefined | null>;
 
   constructor(private store: Store<AppState>) {
     this.heroes$ = this.store.select(heroesSelector);
@@ -26,10 +32,10 @@ export class HeroesComponent implements OnInit {
     this.errorHeroesLoading$ = this.store.select(errorHeroesLoadingSelector);
     this.isAddHeroLoading$ = this.store.select(isAddHeroLoadingSelector);
     this.errorAddHero$ = this.store.select(errorAddHeroSelector);
+    this.errorDeleteHero$ = this.store.select(errorDeleteHeroSelector);
   }
 
   ngOnInit(): void {
-    
     this.store.dispatch(HeroesActions.getHeroes());
   }
 
@@ -41,9 +47,7 @@ export class HeroesComponent implements OnInit {
     this.store.dispatch(HeroesActions.addHero({ hero: { name } as Hero }));
   }
 
-  // delete(hero: Hero): void {
-  //   this.heroService.deleteHero(hero.id).subscribe((_) => {
-  //     this.heroes = this.heroes.filter((h) => h !== hero);
-  //   });
-  // }
+  delete(hero: Hero): void {
+    this.store.dispatch(HeroesActions.deleteHero({ id: hero.id }));
+  }
 }

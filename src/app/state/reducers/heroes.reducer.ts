@@ -6,6 +6,7 @@ import { AppState } from '../model/app-state';
 export const initialState: AppState = {
   errorAddHero: undefined,
   errorHeroesLoading: undefined,
+  errorDeleteHero: undefined,
   isHeroesLoading: false,
   isAddHeroLoading: false,
   heroes: [],
@@ -40,5 +41,14 @@ export const heroesReducer = createReducer(
     ...state,
     isAddHeroLoading: false,
     errorAddHero: error,
+  })),
+  on(HeroesActions.deleteHero, (state) => ({
+    ...state,
+    isHeroesLoading: true,
+  })),
+  on(HeroesActions.deleteHeroFailure, (state, { error }) => ({
+    ...state,
+    isHeroesLoading: false,
+    errorDeleteHero: error,
   }))
 );

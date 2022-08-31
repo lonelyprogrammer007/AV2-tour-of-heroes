@@ -27,3 +27,8 @@ export const errorAddHeroSelector = createSelector(
   appStateSelector,
   (state: AppState) => state.errorAddHero
 );
+
+export const errorDeleteHeroSelector = createSelector(
+  appStateSelector,
+  (state: AppState) => state.errorDeleteHero
+);

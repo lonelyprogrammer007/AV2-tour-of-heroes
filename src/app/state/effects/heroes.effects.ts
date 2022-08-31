@@ -6,15 +6,17 @@ import * as HeroesActions from '../actions/heroes.actions';
 
 @Injectable()
 export class HeroesEffects {
-  getPosts$ = createEffect(() =>
+  getHeroes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(HeroesActions.getHeroes),
       mergeMap(() => {
         return this.heroService.getHeroes().pipe(
-          map((heroes) => HeroesActions.getHeroesSuccess({ heroes })),
-          catchError((error) =>
-            of(HeroesActions.getHeroesFailure({ error: error.message }))
-          )
+          map((heroes) => {
+            return HeroesActions.getHeroesSuccess({ heroes });
+          }),
+          catchError((error) => {
+            return of(HeroesActions.getHeroesFailure({ error: error.message }));
+          })
         );
       })
     )
@@ -28,6 +30,20 @@ export class HeroesEffects {
           map((hero) => HeroesActions.addHeroSuccess({ hero })),
           catchError((error) =>
             of(HeroesActions.addHeroFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
+
+  deleteHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HeroesActions.deleteHero),
+      exhaustMap((action) => {
+        return this.heroService.deleteHero(action.id).pipe(
+          map((_) => HeroesActions.getHeroes()),
+          catchError((error) =>
+            of(HeroesActions.deleteHeroFailure({ error: error.message }))
           )
         );
       })

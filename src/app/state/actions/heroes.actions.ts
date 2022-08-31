@@ -24,3 +24,13 @@ export const addHeroFailure = createAction(
   '[Hero] Add Hero Failure',
   props<{ error: string }>()
 );
+
+export const deleteHero = createAction(
+  '[Hero] Delete Hero',
+  props<{ id: number }>()
+);
+
+export const deleteHeroFailure = createAction(
+  '[Hero] Delete Hero Failure',
+  props<{ error: string }>()
+);
