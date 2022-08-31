@@ -1,12 +1,6 @@
-<section>
+<section class="flex flex-col">
   <h2>My Heroes</h2>
-  <mat-spinner
-    *ngIf="isHeroesLoading$ | async; else heroListContainer"
-  ></mat-spinner>
-  <h3 class="text-red-600" *ngIf="errorHeroesLoading$ | async as error">
-    {{ error }}
-  </h3>
-  <div class="flex items-center gap-2">
+  <div class="flex items-center gap-2 self-center">
     <mat-form-field appearance="fill">
       <mat-label>Hero name:</mat-label>
       <input matInput #heroName />
@@ -24,6 +18,21 @@
       {{ error }}
     </h3>
   </div>
+  <div>
+    <div
+      *ngIf="isHeroesLoading$ | async; else heroListContainer"
+      class="flex animate-pulse flex-col gap-2 rounded-md border border-custom-purple p-4 shadow"
+    >
+      <div class="h-8 rounded bg-slate-200"></div>
+      <div class="h-8 rounded bg-slate-200"></div>
+      <div class="h-8 rounded bg-slate-200"></div>
+      <div class="h-8 rounded bg-slate-200"></div>
+      <div class="h-8 rounded bg-slate-200"></div>
+    </div>
+  </div>
+  <h3 class="text-red-600" *ngIf="errorHeroesLoading$ | async as error">
+    {{ error }}
+  </h3>
   <ng-template #heroListContainer let-user>
     <div class="flex flex-col gap-2">
       <mat-card
