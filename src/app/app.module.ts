@@ -6,7 +6,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { NgxJdenticonModule } from 'ngx-jdenticon';
 
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './messages/messages.component';
+import { MessagesComponent } from './components/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

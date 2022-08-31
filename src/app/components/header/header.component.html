@@ -1,7 +1,7 @@
-<mat-toolbar color="primary" class="header">
-  <mat-toolbar-row class="header__row">
-    <div class="header__brand-container">
-      <div class="header__burguer-button">
+<mat-toolbar color="primary" class="relative z-30">
+  <mat-toolbar-row class="relative gap-4">
+    <div class="flex h-full items-center gap-2">
+      <div class="sm:hidden">
         <button
           (click)="isMenuActive = !isMenuActive"
           mat-icon-button
@@ -10,16 +10,16 @@
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-      <span class="header__logo-container"
-        ><img src="assets/logo.png" alt="logo" class="header__logo"
+      <span class="h-1/2 flex-none rounded-3xl bg-white"
+        ><img src="assets/logo.png" alt="logo" class="h-full"
       /></span>
-      <span class="header__title">{{ title }}</span>
+      <span class="text-base">{{ title }}</span>
     </div>
-    <nav class="header__navbar">
+    <nav class="hidden gap-2 sm:flex">
       <a
         mat-button
         *ngFor="let navMenuItem of navMenuItems"
-        class="header__nav-item"
+        class="py-2 text-base hover:bg-custom-color-1"
         routerLink="{{ navMenuItem.url }}"
         routerLinkActive="bg-custom-color-1"
         >{{ navMenuItem.text }}</a
@@ -27,14 +27,10 @@
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="header__rw-navbar">
+<div class="absolute z-20 sm:hidden">
   <mat-nav-list
-    [ngClass]="
-      isMenuActive
-        ? 'header__rw-nav-list--hidden '
-        : 'header__rw-nav-list--active '
-    "
-    class="header__rw-nav-list"
+    [ngClass]="isMenuActive ? 'translate-x-0' : 'translate-x-[-100%]'"
+    class="absolute top-full left-0 z-20 bg-white drop-shadow-2xl transition duration-150 ease-out"
   >
     <mat-list-item *ngFor="let navMenuItem of navMenuItems">
       <a
@@ -47,7 +43,7 @@
   </mat-nav-list>
   <div
     (click)="isMenuActive = false"
-    [ngClass]="isMenuActive ? 'overlay--active ' : 'overlay--hidden '"
+    [ngClass]="isMenuActive ? 'block ' : 'hidden'"
     class="overlay fixed inset-0 bg-custom-color-1"
   ></div>
 </div>
