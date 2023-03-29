@@ -13,15 +13,12 @@ export class HeroesComponent implements OnInit {
   heroes!: Observable<Hero[]>;
 
   constructor(private heroService: HeroService) {
-    this.heroes = this.heroService.getHeroes();
+    this.heroes = this.heroService.heroes;
   }
 
   ngOnInit(): void {
-    // this.getHeroes();
-  }
-
-  getHeroes(): void {
-    // this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
+    console.warn("mount")
+    !this.heroService.haveHeroes() && this.heroService.getHeroes();
   }
 
   // add(name: string): void {

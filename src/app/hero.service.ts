@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, delay, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, delay, Observable, of, tap } from 'rxjs';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HeroService {
   private heroesUrl = 'api/heroes'; // URL to web api
+  heroes!: BehaviorSubject<Hero[]>;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -17,14 +18,27 @@ export class HeroService {
   constructor(
     private messageService: MessageService,
     private http: HttpClient
-  ) {}
+  ) {
+    this.heroes = new BehaviorSubject([] as Hero[]);
+    console.warn(this.heroes?.getValue());
+  }
 
   /** GET heroes from the server */
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
-    );
+  getHeroes() {
+    this.http
+      .get<Hero[]>(this.heroesUrl)
+      .pipe(
+        tap((_) => this.log('fetched heroes')),
+        catchError(this.handleError<Hero[]>('getHeroes', []))
+      )
+      .subscribe((heroes: Hero[]) => {
+        this.heroes.next(heroes);
+      });
+  }
+
+  haveHeroes(): boolean {
+    console.warn(`${this.heroes.getValue().length === 0 ? 'no' : 'si'} tiene heroes`)
+    return this.heroes.getValue().length === 0 ? false : true;
   }
 
   /** GET hero by id. Will 404 if id not found */
