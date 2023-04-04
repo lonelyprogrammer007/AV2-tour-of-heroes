@@ -5,8 +5,6 @@ import { Hero } from 'src/app/domain/model/Hero';
   providedIn: 'root',
 })
 export class InMemoryDataService {
-  constructor() {}
-
   createDb() {
     const heroes = [
       { id: 12, name: 'Dr. Nice' },
