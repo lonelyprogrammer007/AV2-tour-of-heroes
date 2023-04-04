@@ -1,3 +1,3 @@
-export abstract class Mapper<I> {​​
+export abstract class Mapper<I> {
   abstract fromMap(obj: any): I;
-}​​
+}

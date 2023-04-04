@@ -55,7 +55,7 @@ import { HeroService } from './infraestructure/driven-adapters/in-memory-hero-ap
       logOnly: environment.production,
     }),
   ],
-  providers: [{provide: HeroGateway, useClass: HeroService}],
+  providers: [{ provide: HeroGateway, useClass: HeroService }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Hero } from 'src/app/domain/model/Hero';
 
 @Component({
@@ -6,10 +6,6 @@ import { Hero } from 'src/app/domain/model/Hero';
   templateUrl: './hero-badge.component.html',
   styleUrls: ['./hero-badge.component.css'],
 })
-export class HeroBadgeComponent implements OnInit {
+export class HeroBadgeComponent {
   @Input() hero!: Hero;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

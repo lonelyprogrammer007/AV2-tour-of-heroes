@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  AfterViewChecked,
+} from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -11,13 +17,12 @@ import {
 import { Hero } from 'src/app/domain/model/Hero';
 import { ConsultHeroesUseCase } from 'src/app/domain/use-cases/consult-heroes-use-case';
 
-
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.css'],
 })
-export class HeroSearchComponent implements OnInit {
+export class HeroSearchComponent implements OnInit, AfterViewChecked {
   heroes$?: Observable<Hero[]>;
   private searchTerms: Subject<string> = new Subject<string>();
   @ViewChild('serachListContainer') serachListContainer!: ElementRef;
