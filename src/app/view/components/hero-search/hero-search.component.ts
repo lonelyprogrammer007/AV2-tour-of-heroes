@@ -8,8 +8,8 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { Hero } from 'src/app/model/hero';
-import { HeroService } from 'src/app/services/hero.service';
+import { Hero } from 'src/app/domain/model/Hero';
+import { ConsultHeroesUseCase } from 'src/app/domain/use-cases/consult-heroes-use-case';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms: Subject<string> = new Subject<string>();
   @ViewChild('serachListContainer') serachListContainer!: ElementRef;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private _consultHeroesUseCase: ConsultHeroesUseCase) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -35,7 +35,7 @@ export class HeroSearchComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(
         (term: string): Observable<Hero[]> =>
-          this.heroService.searchHeroes(term)
+          this._consultHeroesUseCase.searchHeroesByTerm(term)
       )
     );
   }
