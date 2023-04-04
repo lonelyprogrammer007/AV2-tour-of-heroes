@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Hero } from 'src/app/model/hero';
-import { AppState } from 'src/app/state/model/app-state';
+import { Hero } from 'src/app/domain/model/Hero';
+import { AppState } from 'src/app/infraestructure/state/model/app-state';
 import {
   errorAddHeroSelector,
   errorDeleteHeroSelector,
@@ -10,8 +10,8 @@ import {
   heroesSelector,
   isAddHeroLoadingSelector,
   isHeroesLoadingSelector,
-} from 'src/app/state/selectors/heroes';
-import * as HeroesActions from '../../state/actions/heroes.actions';
+} from 'src/app/infraestructure/state/selectors/heroes';
+import * as HeroesActions from 'src/app/infraestructure/state/actions/heroes.actions';
 
 @Component({
   selector: 'app-heroes',

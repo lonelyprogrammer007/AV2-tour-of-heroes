@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Hero } from 'src/app/model/hero';
+import { Hero } from 'src/app/domain/model/Hero';
 
 export const getHeroes = createAction('[Heroes] Get Heroes');
 

@@ -1,4 +1,4 @@
-import { Hero } from 'src/app/model/hero';
+import { Hero } from 'src/app/domain/model/Hero';
 
 export interface AppState {
   heroes: Hero[];

@@ -20,7 +20,6 @@ import { ConsultHeroesUseCase } from 'src/app/domain/use-cases/consult-heroes-us
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
-  styleUrls: ['./hero-search.component.css'],
 })
 export class HeroSearchComponent implements OnInit, AfterViewChecked {
   heroes$?: Observable<Hero[]>;

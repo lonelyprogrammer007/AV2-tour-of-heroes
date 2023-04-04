@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, mergeMap, of } from 'rxjs';
-import { HeroService } from 'src/app/services/hero.service';
+import { HeroService } from '../../driven-adapters/in-memory-hero-api/hero.service';
 import * as HeroesActions from '../actions/heroes.actions';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class HeroesEffects {
     this.actions$.pipe(
       ofType(HeroesActions.getHeroes),
       mergeMap(() => {
-        return this.heroService.getHeroes().pipe(
+        return this.heroService.getAll().pipe(
           map((heroes) => {
             return HeroesActions.getHeroesSuccess({ heroes });
           }),
@@ -26,7 +26,7 @@ export class HeroesEffects {
     this.actions$.pipe(
       ofType(HeroesActions.addHero),
       exhaustMap((action) => {
-        return this.heroService.addHero(action.hero).pipe(
+        return this.heroService.add(action.hero).pipe(
           map((hero) => HeroesActions.addHeroSuccess({ hero })),
           catchError((error) =>
             of(HeroesActions.addHeroFailure({ error: error.message }))
@@ -40,7 +40,7 @@ export class HeroesEffects {
     this.actions$.pipe(
       ofType(HeroesActions.deleteHero),
       exhaustMap((action) => {
-        return this.heroService.deleteHero(action.id).pipe(
+        return this.heroService.delete(action.id).pipe(
           map((_) => HeroesActions.getHeroes()),
           catchError((error) =>
             of(HeroesActions.deleteHeroFailure({ error: error.message }))
