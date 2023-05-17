@@ -8,7 +8,7 @@ import { MessageService } from '../../services/message.service';
 @Injectable({
   providedIn: 'root',
 })
-export class HeroService {
+export class HeroService extends HeroGateway {
   private heroesUrl = 'api/heroes';
   private delay = 500;
   httpOptions = {
