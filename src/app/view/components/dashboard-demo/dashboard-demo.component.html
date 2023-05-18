@@ -1,0 +1,10 @@
+<div class="dashboard">
+  <h2>Top Heroes</h2>
+  <app-hero-search></app-hero-search>
+  <div
+    class="dashboard__badge-container"
+    style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))"
+  >
+    <app-hero-badge *ngFor="let hero of heroes" [hero]="hero"></app-hero-badge>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+.dashboard {
+  @apply text-center;
+}
+.dashboard__badge-container {
+  @apply grid gap-2;
+}
