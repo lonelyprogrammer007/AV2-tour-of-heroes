@@ -23,6 +23,7 @@ export class HeroService extends HeroGateway {
   }
 
   getAll(): Observable<Hero[]> {
+    console.warn('Service invocation')
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap((_) => this.log('fetched heroes')),
       delay(this.delay),

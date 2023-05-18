@@ -24,6 +24,7 @@ import { InMemoryDataService } from './infraestructure/driven-adapters/in-memory
 import { SharedModule } from './view/shared/shared.module';
 import { HeroGateway } from './domain/model/Hero/gateway';
 import { HeroService } from './infraestructure/driven-adapters/in-memory-hero-api/hero.service';
+import { DashboardDemoComponent } from './view/components/dashboard-demo/dashboard-demo.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeroService } from './infraestructure/driven-adapters/in-memory-hero-ap
     HeroSearchComponent,
     HeroBadgeComponent,
     HeaderComponent,
+    DashboardDemoComponent,
   ],
   imports: [
     BrowserModule,
